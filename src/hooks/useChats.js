@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || '';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://worker-production-b2a1.up.railway.app';
 
 export function useChats(userId) {
   const [chats, setChats] = useState([
