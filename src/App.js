@@ -52,7 +52,7 @@ function loadSettings() {
 }
 
 export default function App() {
-  const { user, userId, haptic } = useTelegram();
+  const { user, userId, haptic, isFullscreen, toggleFullscreen } = useTelegram();
   const { chats, activeChat, activeChatId, setActiveChatId, createChat, deleteChat, sendMessage, setModel, loading } = useChats(userId);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [screen, setScreen] = useState('chat'); // 'chat' | 'profile' | 'settings'
@@ -102,6 +102,8 @@ export default function App() {
         onSend={(text) => { haptic('light'); sendMessage(text); }}
         onMenuOpen={handleMenuOpen}
         onModelChange={(model) => { haptic('light'); setModel(model); }}
+        isFullscreen={isFullscreen}
+        onToggleFullscreen={toggleFullscreen}
       />
 
       {screen === 'profile' && (

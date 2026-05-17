@@ -24,7 +24,7 @@ function Message({ msg }) {
   );
 }
 
-export default function ChatView({ chat, loading, onSend, onMenuOpen, onModelChange }) {
+export default function ChatView({ chat, loading, onSend, onMenuOpen, onModelChange, isFullscreen, onToggleFullscreen }) {
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
   const textareaRef = useRef(null);
@@ -77,6 +77,11 @@ export default function ChatView({ chat, loading, onSend, onMenuOpen, onModelCha
             onClick={() => onModelChange('gemini')}
           >Nova</button>
         </div>
+        {onToggleFullscreen && (
+          <button className="fullscreen-btn" onClick={onToggleFullscreen} title={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}>
+            {isFullscreen ? '⊡' : '⊞'}
+          </button>
+        )}
       </div>
 
       {/* Messages */}
