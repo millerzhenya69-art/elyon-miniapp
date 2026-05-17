@@ -168,3 +168,18 @@
   font-size: 11px;
   color: var(--text-muted);
 }
+
+.footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 8px;
+}
+.footer-btn:hover { background: var(--bg-hover); color: var(--text-primary); }

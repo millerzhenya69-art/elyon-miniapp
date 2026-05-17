@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sidebar.css';
 
-export default function Sidebar({ chats, activeChatId, onSelect, onCreate, onDelete, onClose, user }) {
+export default function Sidebar({ chats, activeChatId, onSelect, onCreate, onDelete, onClose, onProfile, onSettings, user }) {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -13,12 +13,13 @@ export default function Sidebar({ chats, activeChatId, onSelect, onCreate, onDel
       </div>
 
       {user && (
-        <div className="sidebar-user">
+        <div className="sidebar-user" onClick={onProfile} style={{cursor:'pointer'}}>
           <div className="user-avatar">{(user.first_name || 'U')[0].toUpperCase()}</div>
           <div className="user-info">
             <div className="user-name">{user.first_name}</div>
             {user.username && <div className="user-handle">@{user.username}</div>}
           </div>
+          <div style={{color:'var(--text-muted)',fontSize:'18px',marginLeft:'auto'}}>›</div>
         </div>
       )}
 
@@ -47,6 +48,9 @@ export default function Sidebar({ chats, activeChatId, onSelect, onCreate, onDel
       </div>
 
       <div className="sidebar-footer">
+        <button className="footer-btn" onClick={onSettings}>
+          ⚙️ Customization
+        </button>
         <div className="sidebar-version">Elyon AI v0.2</div>
       </div>
     </div>

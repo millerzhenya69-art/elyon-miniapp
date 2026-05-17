@@ -7,6 +7,10 @@ export function useTelegram() {
     if (tg) {
       tg.ready();
       tg.expand();
+      // Fullscreen API (Telegram 8.0+)
+      if (tg.requestFullscreen) {
+        tg.requestFullscreen();
+      }
       tg.setHeaderColor('#0a0a0f');
       tg.setBackgroundColor('#0a0a0f');
     }
