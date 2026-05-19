@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://worker-production-b2a1.up.railway.app';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://elyon-bot.onrender.com';
 
 export function useChats(userId) {
   const [chats, setChats] = useState([
@@ -32,35 +32,62 @@ export function useChats(userId) {
     });
   }, [activeChatId]);
 
-  const sendMessage = useCallback(async (text) => {
-    if (!text.trim() || loading) return;
+  const sendMessage = useCallback(async (text, fileData = null, fileBlob = null) => {
+    if ((!text.trim() && !fileBlob) || loading) return;
 
-    const userMsg = { id: Date.now(), role: 'user', content: text, ts: Date.now() };
+    const userMsg = {
+      id: Date.now(),
+      role: 'user',
+      content: text,
+      file: fileData,
+      ts: Date.now()
+    };
 
     setChats(prev => prev.map(c => {
       if (c.id !== activeChatId) return c;
-      const title = c.messages.length === 0 ? text.slice(0, 32) : c.title;
+      const title = c.messages.length === 0 ? (text || fileData?.name || 'File').slice(0, 32) : c.title;
       return { ...c, title, messages: [...c.messages, userMsg] };
     }));
 
     setLoading(true);
 
     try {
-      const history = activeChat.messages.map(m => ({ role: m.role, content: m.content }));
-      history.push({ role: 'user', content: text });
+      let reply;
 
-      const res = await fetch(`${BACKEND_URL}/api/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          user_id: userId,
-          model: activeChat.model,
-          messages: history
-        })
-      });
+      if (fileBlob) {
+        // Отправка файла
+        const formData = new FormData();
+        formData.append('file', fileBlob, fileData.name);
+        formData.append('user_id', String(userId));
+        formData.append('model', activeChat.model);
+        formData.append('prompt', text || 'Проанализируй этот файл');
 
-      const data = await res.json();
-      const reply = data.reply || 'No response.';
+        const history = activeChat.messages.map(m => ({ role: m.role, content: m.content }));
+        formData.append('history', JSON.stringify(history));
+
+        const res = await fetch(`${BACKEND_URL}/api/file`, {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        reply = data.reply || data.error || 'No response.';
+      } else {
+        // Обычное текстовое сообщение
+        const history = activeChat.messages.map(m => ({ role: m.role, content: m.content }));
+        history.push({ role: 'user', content: text });
+
+        const res = await fetch(`${BACKEND_URL}/api/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_id: userId,
+            model: activeChat.model,
+            messages: history
+          })
+        });
+        const data = await res.json();
+        reply = data.reply || data.error || 'No response.';
+      }
 
       const aiMsg = { id: Date.now() + 1, role: 'assistant', content: reply, ts: Date.now() };
       setChats(prev => prev.map(c =>
