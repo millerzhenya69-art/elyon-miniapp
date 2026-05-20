@@ -31,8 +31,6 @@ function Message({ msg }) {
   );
 }
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://elyon-bot.onrender.com';
-
 export default function ChatView({ chat, loading, onSend, onMenuOpen, onModelChange, isFullscreen, onToggleFullscreen }) {
   const [input, setInput] = useState('');
   const [file, setFile] = useState(null);
