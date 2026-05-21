@@ -17,6 +17,7 @@ export default function Profile({ userId, onClose }) {
       .catch(() => setLoading(false));
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { loadUser(); }, [userId]);
 
   const refLink = user ? `https://t.me/${BOT_USERNAME}?start=${userId}` : '';
