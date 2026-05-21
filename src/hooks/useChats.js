@@ -30,8 +30,9 @@ async function deletePersistedChat(userId, chatId) {
   }
 }
 
+const DEFAULT_CHAT = { id: 'default', title: 'New chat', messages: [], model: 'gpt', createdAt: Date.now() };
+
 export function useChats(userId) {
-  const DEFAULT_CHAT = { id: 'default', title: 'New chat', messages: [], model: 'gpt', createdAt: Date.now() };
 
   const [chats, setChats] = useState([DEFAULT_CHAT]);
   const [activeChatId, setActiveChatId] = useState('default');
