@@ -188,31 +188,6 @@ export default function Profile({ userId, onClose }) {
           </div>
 
           <div className="profile-card">
-            <div className="card-label">💳 Оплата через Wata (карта РФ)</div>
-            <div className="pay-plans">
-              {PLANS.map(p => (
-                <button
-                  key={p.key}
-                  className="pay-plan-btn pay-plan-wata"
-                  onClick={() => {
-                    if (window.Telegram?.WebApp) {
-                      window.Telegram.WebApp.openTelegramLink(
-                        `https://t.me/${BOT_USERNAME}`
-                      );
-                      window.Telegram.WebApp.showAlert(
-                        `Перейди в бот → ⭐ Elyon Nova → 💳 Wata → ${p.label}`
-                      );
-                    }
-                  }}
-                >
-                  <span className="plan-label">{p.label}</span>
-                  <span className="plan-price">{p.rub} ₽</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="profile-card">
             <div className="card-label-row">
               <span className="card-label">🎁 Оплата подарком</span>
               <span className="tag-test">TEST</span>
