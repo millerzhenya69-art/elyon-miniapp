@@ -179,3 +179,154 @@
   text-align: center;
   padding: 40px;
 }
+
+/* Добавить в конец Profile.css */
+
+/* ── Табы ────────────────────────────────────────────────────────── */
+.profile-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px 12px;
+}
+
+.profile-tab {
+  flex: 1;
+  padding: 8px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.profile-tab.active {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent-light);
+}
+
+/* ── Кнопка Beta-Tester ──────────────────────────────────────────── */
+.beta-tester-btn {
+  width: 100%;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, var(--accent-dim), transparent);
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+  color: var(--accent-light);
+  font-size: 14px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.beta-tester-btn:hover {
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+/* ── Планы оплаты ────────────────────────────────────────────────── */
+.pay-plans {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pay-plan-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.pay-plan-btn:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-dim);
+}
+
+.pay-plan-wata {
+  border-color: rgba(22,163,74,0.25);
+}
+
+.pay-plan-wata:hover {
+  border-color: rgba(22,163,74,0.5);
+  background: rgba(22,163,74,0.08);
+}
+
+.pay-plan-gift {
+  border-color: rgba(168,85,247,0.25);
+}
+
+.pay-plan-gift:hover {
+  border-color: rgba(168,85,247,0.5);
+  background: rgba(168,85,247,0.08);
+}
+
+.plan-label {
+  font-weight: 500;
+}
+
+.plan-price {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+/* ── Тег TEST ────────────────────────────────────────────────────── */
+.card-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tag-test {
+  font-size: 10px;
+  font-weight: 700;
+  color: #f97316;
+  background: rgba(249,115,22,0.15);
+  border: 1px solid rgba(249,115,22,0.35);
+  border-radius: 6px;
+  padding: 2px 6px;
+  letter-spacing: 0.05em;
+}
+
+/* ── История покупок ─────────────────────────────────────────────── */
+.purchase-item {
+  padding: 12px 14px !important;
+}
+
+.purchase-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.purchase-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.purchase-status {
+  font-size: 16px;
+}
+
+.purchase-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
