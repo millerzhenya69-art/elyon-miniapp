@@ -51,7 +51,7 @@ export default function Sidebar({ chats, activeChatId, onSelect, onCreate, onDel
         <button className="footer-btn" onClick={onSettings}>
           ⚙️ Customization
         </button>
-        <div className="sidebar-version">Elyon AI v0.2</div>
+        <div className="sidebar-version">Elyon AI 2.0</div>
       </div>
     </div>
   );
