@@ -167,7 +167,11 @@ export function useChats(userId) {
           }),
         });
         const data = await res.json();
-        reply = data.reply || data.error || 'No response.';
+        if (data.error === 'daily_limit') {
+          reply = `Вы достигли дневного лимита сообщений (${data.limit}/${data.limit}).\nЛимит обновится в 00:00.`;
+        } else {
+          reply = data.reply || data.error || 'No response.';
+        }
       }
 
       const aiMsg = { id: Date.now() + 1, role: 'assistant', content: reply, ts: Date.now() };
