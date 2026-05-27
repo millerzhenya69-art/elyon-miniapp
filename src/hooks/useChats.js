@@ -156,12 +156,15 @@ export function useChats(userId) {
           { role: 'user', content: text },
         ];
 
+        const modelMap = { core: 'gpt', nova: 'nova', pro: 'pro', absolution: 'absolution', gpt: 'gpt', gemini: 'nova' };
+        const apiModel = modelMap[activeChat.model] || 'gpt';
+
         const res = await fetch(`${BACKEND_URL}/api/chat`, {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({
             user_id:  userId,
-            model:    activeChat.model,
+            model:    apiModel,
             messages: history,
             chat_id:  activeChatId,
           }),
