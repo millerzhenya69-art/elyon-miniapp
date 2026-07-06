@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://elyon-bot.onrender.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://unkony-elyon-bot.hf.space';
 const BOT_USERNAME = 'Elyon_by_unkony_bot';
 
 export default function Profile({ userId, onClose }) {
