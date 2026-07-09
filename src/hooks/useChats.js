@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://unkony-elyon-bot.hf.space';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://elyon-ai-web.vercel.app/api/relay';
 
 // Сохраняем чат на сервер (дебаунс 800ms)
 async function persistChat(userId, chat) {
